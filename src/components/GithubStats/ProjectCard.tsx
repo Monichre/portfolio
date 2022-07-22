@@ -107,7 +107,7 @@ const ProjectCard = ({ project }: Props) => {
       <div className={classes.title}>
         <Text h3>{name} </Text>
 
-        <Avatar className={classes.avatar} size="small" src={avatarUrl} />
+        <Avatar className={classes.avatar} src={avatarUrl} />
       </div>
       {/* <div className={classes.content}>
         {contributions.map(({ occurredAt, commitCount }) => (

@@ -107,12 +107,6 @@ const GithubStats = ({
   },
   topRepositories,
 }) => {
-  console.log("topRepositories: ", topRepositories);
-  console.log(
-    "commitContributionsByRepository: ",
-    commitContributionsByRepository
-  );
-
   const classes = useStylesContentStyles();
   const isMobile = useMedia({ maxWidth: "768px" });
 
@@ -138,8 +132,8 @@ const GithubStats = ({
                 Top Repositories
               </Text>
             )}
-            {topRepositories.edges?.map((edge) => (
-              <ProjectCard project={edge.node} />
+            {topRepositories.edges?.map((edge, i) => (
+              <ProjectCard key={i} project={edge.node} />
             ))}
           </div>
           <div className={classes.activity}>

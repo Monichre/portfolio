@@ -1,5 +1,4 @@
-export const GET_GITHUB = `
-query githubData {
+export const GET_GITHUB = `query{
   user(login: "monichre") {
     login
     status {
@@ -16,15 +15,6 @@ query githubData {
           }
           pushedAt
           updatedAt
-          
-            ...on Repository {
-              name
-              url
-              owner {
-                login
-                avatarUrl
-              }
-            }
         }
       }
     }
@@ -79,10 +69,10 @@ query githubData {
         }
       }
     }
-    pinnedItems(first:5) {
+    pinnedItems(first: 5) {
       edges {
         node {
-          ...on Repository {
+          ... on Repository {
             name
             url
             owner {
@@ -90,13 +80,11 @@ query githubData {
               avatarUrl
             }
           }
-
         }
       }
     }
     repositories(first: 20, orderBy: {field: STARGAZERS, direction: DESC}) {
-     totalCount
+      totalCount
     }
   }
-}
-`;
+}`;

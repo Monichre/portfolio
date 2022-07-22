@@ -1,17 +1,18 @@
-import styled, { css } from "styled-components";
 import {
-  Modal as ZeitModal,
   Input as ZeitInput,
+  Link as ZeitLink,
+  Modal as ZeitModal,
   Spacer as ZeitSpacer,
   Textarea as ZeitTextarea,
   Tooltip as ZeitTooltip,
-  Link as ZeitLink,
 } from "@geist-ui/react";
 
-export const Modal = styled(ZeitModal)``;
-export const Input = styled(ZeitInput)``;
-export const Spacer = styled(ZeitSpacer)``;
-export const Textarea = styled(ZeitTextarea)``;
+import styled from "styled-components";
 
-export const Tooltip = styled(ZeitTooltip)``;
-export const Link = styled(ZeitLink)``;
+export const Modal: any = styled(ZeitModal)``;
+export const Input: any = styled(ZeitInput)``;
+export const Spacer: any = styled(ZeitSpacer)``;
+export const Textarea: any = styled(ZeitTextarea)``;
+
+export const Tooltip: any = styled(ZeitTooltip)``;
+export const Link: any = styled(ZeitLink)``;

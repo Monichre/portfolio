@@ -5,17 +5,18 @@ import GithubStats from "../components/GithubStats/GithubStats";
 import { getQuery } from "../lib/api";
 import style from "../styles/Project.module.css";
 
-const Work = ({ data: { user } }) => {
-  console.log("user: ", user);
+const Work = ({ data }) => {
   return (
     <div className={style.project}>
-      <GithubStats {...user} />
+      <GithubStats {...data} />
     </div>
   );
 };
 
 export async function getStaticProps() {
-  const { data } = await getQuery(GET_GITHUB);
+  const {
+    data: { user: data },
+  } = await getQuery(GET_GITHUB);
 
   return {
     props: {
