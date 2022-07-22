@@ -75,3 +75,7 @@ textarea,
 select {
   font: inherit;
 }
+
+ul li:before {
+  content: unset !important;
+}

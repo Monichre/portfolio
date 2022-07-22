@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import style from "../styles/About.module.css";
-import { BsFolderFill, BsMarkdownFill } from "react-icons/bs";
-import { FiChevronRight, FiChevronDown } from "react-icons/fi";
-import { HiOutlineMenu } from "react-icons/hi";
-import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { BsFolderFill, BsMarkdownFill } from "react-icons/bs";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
+
+import { AiOutlineClose } from "react-icons/ai";
+import { HiOutlineMenu } from "react-icons/hi";
+import style from "../styles/About.module.css";
+import { useState } from "react";
+
 const About = () => {
   const [showReact, setShowReact] = useState(true);
   const [showNext, setShowNext] = useState(false);
@@ -100,15 +102,32 @@ const About = () => {
             },
           }}
         >
-          <span className={style.ml_2}> /**</span>
-          <span style={{ fontWeight: "bold" }}>* About me</span>
-          <span>* Creative and self-starting Front-End Developer</span>
-          <span>* with 2 years experience and maintaining</span>
-          <span>* responsive websites.</span>
-          <span>* Proficient in HTML, CSS, JavaScript</span>
-          <span>* and React plus modern libraries and frameworks.</span>
-
-          <span className={style.ml_2}>*/</span>
+          <p style={{ maxWidth: "30%" }}>
+            <span className={style.ml_2} style={{ fontWeight: "bold" }}>
+              {" "}
+              /*
+            </span>
+            <br />
+            <br />
+            <span>
+              Senior software engineer specializing in web, cloud and serverless
+              technologies on the AWS platform. At heart, UFO geek, JAMstack
+              fanboy, dApp, Defi and MEV strat enthusiast and aspiring Solidity
+              developer. At hand, I've spent the last several years building
+              enterprise CMS architecture for a myriad of end use cases across
+              industries ranging from real estate to events management with
+              products including web applications for listing and managing real
+              estate properties and custom data-federated platform APIs unifying
+              disparate data sources for single point consumption in addition to
+              automated systems for the generation, configuration and deployment
+              of AWS Lex and Alexa bots.
+            </span>
+            <br />
+            <br />
+            <span className={style.ml_2} style={{ fontWeight: "bold" }}>
+              */
+            </span>
+          </p>
         </motion.div>
       </div>
       {showMenu && (

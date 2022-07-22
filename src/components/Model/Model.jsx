@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import SceneInit from "../public/SceneInit.js";
+import SceneInit from "./SceneInit.js";
+import styles from "../../styles/Home.module.css";
+import { useEffect } from "react";
 
-import styles from "../styles/Home.module.css";
 const Model = () => {
   useEffect(() => {
     const test = new SceneInit("canvasId", "canvasEl");
@@ -14,7 +13,7 @@ const Model = () => {
 
     let loadedModel;
     const glftLoader = new GLTFLoader();
-    glftLoader.load("./model/scene.gltf", (gltfScene) => {
+    glftLoader.load("./scene.gltf", (gltfScene) => {
       loadedModel = gltfScene;
       gltfScene.scene.rotation.y = 10;
       gltfScene.scene.position.y = -10;

@@ -1,10 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import styles from "../styles/Home.module.css";
 import { AnimatePresence, motion } from "framer-motion";
-import Model from "../components/Model";
+import { useEffect, useState } from "react";
+
+import Head from "next/head";
+import Model from "../components/Model/Model";
+import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
+
 export default function Home() {
   const router = useRouter();
   const [text, setText] = useState("");
@@ -19,6 +20,7 @@ export default function Home() {
     };
     handleInput();
   }, [router, text]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -49,9 +51,9 @@ export default function Home() {
                   },
                 }}
               >
-                <p>Hello! I am</p>
-                <h1>Kasim Shaikh</h1>
-                <h3>front-end developer</h3>
+                <p>Greetings. This is my site</p>
+                <h1>I'm Liam</h1>
+                <h3>Senior software engineer</h3>
               </motion.div>
             </AnimatePresence>
             <div className={styles.left_col_bottom}>
