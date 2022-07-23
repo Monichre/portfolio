@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 import { CssBaseline } from "@geist-ui/core";
