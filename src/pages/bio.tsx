@@ -104,23 +104,23 @@ const About = () => {
         >
           <p style={{ maxWidth: "30%" }}>
             <span className={style.ml_2} style={{ fontWeight: "bold" }}>
-              {" "}
               /*
             </span>
             <br />
             <br />
-            <span>
-              Senior software engineer specializing in web, cloud and serverless
-              technologies on the AWS platform. At heart, UFO geek, JAMstack
-              fanboy, dApp, Defi and MEV strat enthusiast and aspiring Solidity
-              developer. At hand, I've spent the last several years building
-              enterprise CMS architecture for a myriad of end use cases across
-              industries ranging from real estate to events management with
-              products including web applications for listing and managing real
-              estate properties and custom data-federated platform APIs unifying
-              disparate data sources for single point consumption in addition to
-              automated systems for the generation, configuration and deployment
-              of AWS Lex and Alexa bots.
+            <span style={{ lineHeight: "30px" }}>
+              Ello, I'm Liam. I'm a senior software engineer specializing in
+              web, cloud and serverless technologies on the AWS platform. At
+              heart, UFO geek, JAMstack fanboy, dApp, Defi and MEV strat
+              enthusiast and aspiring Solidity developer. At hand, I've spent
+              the last several years building enterprise CMS architecture for a
+              myriad of end use cases across industries ranging from real estate
+              to events management with products including web applications for
+              listing and managing real estate properties and custom
+              data-federated platform APIs unifying disparate data sources for
+              single point consumption in addition to automated systems for the
+              generation, configuration and deployment of AWS Lex and Alexa
+              bots.
             </span>
             <br />
             <br />

@@ -12,9 +12,9 @@ export default function Home() {
 
   useEffect(() => {
     const handleInput = () => {
-      if (text === "whois") {
+      if (text === "meetme") {
         router.push({
-          pathname: "/about",
+          pathname: "/bio",
         });
       }
     };
@@ -77,7 +77,7 @@ export default function Home() {
                   }}
                   // eslint-disable-next-line react/jsx-no-comment-textnodes
                 >
-                  //
+                  $
                 </motion.p>
                 <motion.p
                   initial="hidden"
@@ -97,8 +97,7 @@ export default function Home() {
                     },
                   }}
                 >
-                  {" "}
-                  write the code below to continue:
+                  type the prompt below for a trivial little gimmick
                 </motion.p>
               </div>
               <motion.div
@@ -113,7 +112,7 @@ export default function Home() {
                 <p>&#x276F;</p>
                 <input
                   type="text"
-                  placeholder="whois"
+                  placeholder="meetme"
                   onChange={(e) => setText(e.target.value)}
                 />
               </motion.div>
