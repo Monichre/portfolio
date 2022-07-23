@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
-import {
-  GeistUIThemes,
-  Avatar,
-  Button,
-  Text,
-  Link,
-  Badge,
-  Spacer,
-} from "@geist-ui/react";
-import makeStyles from "./makeStyles";
 import * as Icons from "react-feather";
+
+import {
+  Avatar,
+  Badge,
+  Button,
+  GeistUIThemes,
+  Link,
+  Spacer,
+  Text,
+} from "@geist-ui/react";
+
 import { AppContext } from "./Layout/Layout";
 import { Flex } from "rebass";
+import makeStyles from "./makeStyles";
+import { useContext } from "react";
 import useMedia from "use-media";
 
 const useStyles = makeStyles((ui: GeistUIThemes) => ({
@@ -120,8 +122,8 @@ const ProfileBanner = () => {
               monichre
             </Text>
             <Avatar.Group className={classes["avatar-group"]}>
-              {organizations.map((organization: any) => (
-                <Avatar src={organization.avatarUrl} stacked />
+              {organizations.map((organization: any, i: any) => (
+                <Avatar key={i} src={organization.avatarUrl} stacked />
               ))}
             </Avatar.Group>
           </div>
