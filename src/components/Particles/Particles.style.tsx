@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 export const ParticleBackground = styled.div`
   height: 100vh;
   max-height: 100vh;
@@ -8,11 +8,10 @@ export const ParticleBackground = styled.div`
   left: 0;
   z-index: 0;
   background: transparent;
+  pointer-events: none;
 
   .particles {
     .particles-canvas {
-      /* height: 100vh !important;
-      width: 100vw; */
     }
   }
 `;

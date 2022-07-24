@@ -84,3 +84,8 @@ select {
 ul li:before {
   content: unset !important;
 }
+
+canvas {
+  width: 30vw;
+  height: 800px;
+}

@@ -52,11 +52,11 @@
   color: rgb(86, 76, 97);
 }
 
-.canvasEl {
+/* .canvasEl {
   width: 426px;
   height: 240px;
   cursor: grab;
-}
+} */
 
 @media screen and (max-width: 900px) {
   .two_col {
