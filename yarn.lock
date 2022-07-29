@@ -674,7 +674,7 @@
     react-layout-effect "^1.0.1"
     use-memo-one "^1.1.0"
 
-"@react-spring/core@~9.5.2":
+"@react-spring/core@^9.5.2", "@react-spring/core@~9.5.2":
   version "9.5.2"
   resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.5.2.tgz#c8450783ce87a82d3f9ab21e2650e42922398ff7"
   integrity sha512-UMRtFH6EfebMp/NMDGCUY5+hZFXsg9iT9hzt/iPzJSz2WMXKBjLoFZHJXcmiVOrIhzHmg1O0pFECn1Wp6pZ5Gw==
