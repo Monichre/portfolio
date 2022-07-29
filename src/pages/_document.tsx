@@ -29,10 +29,6 @@ export default class MyDocument extends Document {
             href="https://fonts.gstatic.com"
             crossOrigin={"true"}
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Montserrat&display=swap"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />
