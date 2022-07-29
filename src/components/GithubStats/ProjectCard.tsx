@@ -92,7 +92,6 @@ const useStyles = makeStyles((ui: GeistUIThemes) => ({
 }));
 
 const ProjectCard = ({ project }: Props) => {
-  console.log("project: ", project);
   const classes = useStyles();
   const {
     name,
