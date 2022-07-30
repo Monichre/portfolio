@@ -1,8 +1,8 @@
 .project {
-  background-color: rgb(13, 17, 23);
-  height: calc(100vh - 110px);
+  height: 100vh;
   color: whitesmoke;
-  overflow: auto;
+  padding: 0 48px;
+  margin: 64px 0 0 !important;
 }
 .project_container {
   margin: auto;

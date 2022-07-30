@@ -2,15 +2,20 @@
   color: rgb(139, 148, 158);
   display: flex;
   justify-content: space-between;
-  padding-right: 1rem;
-  align-items: center;
 
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  left: 0;
+  width: 100%;
   height: 50px;
 }
 .footer div {
   display: flex;
   font-size: 1.2rem;
   align-items: center;
+  padding: 0 1rem !important;
 }
 .footer p {
   border-right: 1px solid rgba(139, 148, 158, 0.2);
@@ -27,6 +32,7 @@
 }
 .footer span svg {
   height: 22px;
+  stroke: lightgray;
 }
 @media screen and (max-width: 425px) {
   .footer div {

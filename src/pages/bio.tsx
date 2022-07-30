@@ -1,27 +1,80 @@
+import { Flex } from "rebass";
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { AnimatePresence, motion } from "framer-motion";
-import { BsFolderFill, BsMarkdownFill } from "react-icons/bs";
-import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-
-import { AiOutlineClose } from "react-icons/ai";
-import { HiOutlineMenu } from "react-icons/hi";
+import { motion } from "framer-motion";
 import style from "../styles/About.module.css";
+import styled from "styled-components";
 import { useState } from "react";
 
+const Selfie: any = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 40vh;
+  height: 40vh;
+  border-radius: 50%;
+  background: ${(props: any) => `url(${props.url})`} no-repeat center center;
+  background-size: cover;
+  opacity: 0.4;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: ${(props: any) => `url(${props.url})`} no-repeat center center;
+    background-size: cover;
+
+    opacity: 0.5;
+    mix-blend-mode: hard-light;
+  }
+  &:hover:before {
+    animation: animate 0.3s linear infinite;
+  }
+  @keyframes animate {
+    0% {
+      background-position: 0 0;
+      filter: hue-rotate(0deg);
+    }
+    10% {
+      background-position: 5px 0;
+    }
+    20% {
+      background-position: -5px 0;
+    }
+    30% {
+      background-position: 15px 0;
+    }
+    40% {
+      background-position: 5px 0;
+    }
+    50% {
+      background-position: -25px 0;
+    }
+    60% {
+      background-position: -50px 0;
+    }
+    70% {
+      background-position: 0 -20px;
+    }
+    80% {
+      background-position: -60px -20px;
+    }
+    81% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 0;
+      filter: hue-rotate(360deg);
+    }
+  }
+`;
+
 const About = () => {
-  const [showReact, setShowReact] = useState(true);
-  const [showNext, setShowNext] = useState(false);
-  const [showHtml, setShowHtml] = useState(false);
-  const [showLibrary, setShowLibrary] = useState(false);
-  const [showFree, setShowFree] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   return (
     <div className={style.about}>
-      <div className={style.skill_menu} onClick={(e) => setShowMenu(!showMenu)}>
-        {" "}
-        {showMenu ? <AiOutlineClose /> : <HiOutlineMenu />}
-      </div>
-
       <div className={style.left}>
         <motion.div
           className={style.left_number}
@@ -102,11 +155,11 @@ const About = () => {
             },
           }}
         >
-          <p style={{ maxWidth: "30%" }}>
+          <p style={{ maxWidth: "80%" }}>
             <span className={style.ml_2} style={{ fontWeight: "bold" }}>
               /*
             </span>
-            <br />
+
             <br />
             <span style={{ lineHeight: "30px" }}>
               Ello, I'm Liam. I'm a senior software engineer specializing in
@@ -123,349 +176,24 @@ const About = () => {
               bots.
             </span>
             <br />
-            <br />
+
             <span className={style.ml_2} style={{ fontWeight: "bold" }}>
               */
             </span>
           </p>
         </motion.div>
       </div>
-      {showMenu && (
-        <motion.div
-          className={style.right}
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {
-              x: "100px",
-              opacity: 0,
-            },
-            visible: {
-              x: "0",
-              opacity: 1,
-              transition: {
-                type: "spring",
-                delay: 2,
-              },
-            },
-          }}
-        >
-          <div className={style.right_container}>
-            <h3>Explorer</h3>
-            <div className={style.right_interest}>
-              <span>
-                <FiChevronDown />
-              </span>
-              <span style={{ marginLeft: "5px" }}>MY INTERESTS</span>
-              <div className={style.skill}>
-                <div
-                  onClick={(e) => setShowReact(!showReact)}
-                  className={style.dropdownSkill}
-                >
-                  <span>
-                    {showReact ? <FiChevronDown /> : <FiChevronRight />}
-                  </span>
-                  <span style={{ color: "rgb(235,203,139)" }}>
-                    <BsFolderFill />
-                  </span>
-                  <span> React</span>
-                </div>
-                <AnimatePresence>
-                  {showReact && (
-                    <motion.div
-                      className={style.showSkill}
-                      initial="hidden"
-                      animate="visible"
-                      exit="go"
-                      variants={{
-                        hidden: {
-                          y: "-20px",
-                          opacity: 0,
-                        },
-                        visible: {
-                          y: "0",
-                          opacity: 1,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.5,
-                          },
-                        },
-                        go: {
-                          y: "-20px",
-                          opacity: 0,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.3,
-                          },
-                        },
-                      }}
-                    >
-                      <p>
-                        <BsMarkdownFill /> reusable components.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> routing.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> fetching api.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> context api.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> redux.md
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              <div className={style.skill}>
-                <div
-                  onClick={(e) => setShowNext(!showNext)}
-                  className={style.dropdownSkill}
-                >
-                  <span>
-                    {showNext ? <FiChevronDown /> : <FiChevronRight />}
-                  </span>
-                  <span style={{ color: "rgb(136,192,208)" }}>
-                    <BsFolderFill />
-                  </span>
-                  <span> Next</span>
-                </div>
-                <AnimatePresence>
-                  {showNext && (
-                    <motion.div
-                      className={style.showSkill}
-                      initial="hidden"
-                      animate="visible"
-                      exit="go"
-                      variants={{
-                        hidden: {
-                          y: "-20px",
-                          opacity: 0,
-                        },
-                        visible: {
-                          y: "0",
-                          opacity: 1,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.5,
-                          },
-                        },
-                        go: {
-                          y: "-20px",
-                          opacity: 0,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.3,
-                          },
-                        },
-                      }}
-                    >
-                      <p>
-                        <BsMarkdownFill /> reusable components.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> routing.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> fetching api.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> SSR.md
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              <div className={style.skill}>
-                <div
-                  onClick={(e) => setShowLibrary(!showLibrary)}
-                  className={style.dropdownSkill}
-                >
-                  <span>
-                    {showLibrary ? <FiChevronDown /> : <FiChevronRight />}
-                  </span>
-                  <span style={{ color: "rgb(191,97,106)" }}>
-                    <BsFolderFill />
-                  </span>
-                  <span> Library</span>
-                </div>
-                <AnimatePresence>
-                  {showLibrary && (
-                    <motion.div
-                      className={style.showSkill}
-                      initial="hidden"
-                      animate="visible"
-                      exit="go"
-                      variants={{
-                        hidden: {
-                          y: "-20px",
-                          opacity: 0,
-                        },
-                        visible: {
-                          y: "0",
-                          opacity: 1,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.5,
-                          },
-                        },
-                        go: {
-                          y: "-20px",
-                          opacity: 0,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.3,
-                          },
-                        },
-                      }}
-                    >
-                      <p>
-                        <BsMarkdownFill /> material ui.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> bootstrap.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> tailwind css.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> framer motion.md
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              <div className={style.skill}>
-                <div
-                  onClick={(e) => setShowHtml(!showHtml)}
-                  className={style.dropdownSkill}
-                >
-                  <span>
-                    {showHtml ? <FiChevronDown /> : <FiChevronRight />}
-                  </span>
-                  <span style={{ color: "rgb(163,190,140)" }}>
-                    <BsFolderFill />
-                  </span>
-                  <span> Html & CSS</span>
-                </div>
-                <AnimatePresence>
-                  {showHtml && (
-                    <motion.div
-                      className={style.showSkill}
-                      initial="hidden"
-                      animate="visible"
-                      exit="go"
-                      variants={{
-                        hidden: {
-                          y: "-20px",
-                          opacity: 0,
-                        },
-                        visible: {
-                          y: "0",
-                          opacity: 1,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.5,
-                          },
-                        },
-                        go: {
-                          y: "-20px",
-                          opacity: 0,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.3,
-                          },
-                        },
-                      }}
-                    >
-                      <p>
-                        <BsMarkdownFill /> responsive website.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> grid flexbox.md
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              <div className={style.skill}>
-                <div
-                  onClick={(e) => setShowFree(!showFree)}
-                  className={style.dropdownSkill}
-                >
-                  <span>
-                    {showFree ? <FiChevronDown /> : <FiChevronRight />}
-                  </span>
-                  <span style={{ color: "whitesmoke" }}>
-                    <BsFolderFill />
-                  </span>
-                  <span> Free Time</span>
-                </div>
-                <AnimatePresence>
-                  {showFree && (
-                    <motion.div
-                      className={style.showSkill}
-                      initial="hidden"
-                      animate="visible"
-                      exit="go"
-                      variants={{
-                        hidden: {
-                          y: "-20px",
-                          opacity: 0,
-                        },
-                        visible: {
-                          y: "0",
-                          opacity: 1,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.5,
-                          },
-                        },
-                        go: {
-                          y: "-20px",
-                          opacity: 0,
-                          transition: {
-                            type: "spring",
-                            delay: 0.2,
-                            duration: 0.3,
-                          },
-                        },
-                      }}
-                    >
-                      <p>
-                        <BsMarkdownFill /> read quran.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> play video games.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> hang out with friends.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> learn new things.md
-                      </p>
-                      <p>
-                        <BsMarkdownFill /> building side project.md
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
+      <Flex
+        alignItems={"center"}
+        alignContent="center"
+        flexDirection={"column"}
+        width={"40%"}
+        justifyContent={"center"}
+        // p={5}
+        mr={"10%"}
+      >
+        <Selfie url="/liam-3.jpeg" />
+      </Flex>
     </div>
   );
 };

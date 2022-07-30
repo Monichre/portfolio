@@ -1,9 +1,9 @@
 .about {
-  background-color: rgb(13, 17, 23);
-  height: calc(100vh - 110px);
+  height: calc(100vh - 138px);
   color: whitesmoke;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
@@ -15,6 +15,7 @@
   overflow: hidden;
   height: 500px;
   position: relative;
+  width: 50%;
 }
 
 .about .left_number {

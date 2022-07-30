@@ -12,6 +12,7 @@ export const GET_GITHUB = `query{
           name
           owner {
             avatarUrl
+            login
           }
           pushedAt
           updatedAt

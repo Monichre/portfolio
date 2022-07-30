@@ -1,150 +1,177 @@
-import { Box, Flex } from "rebass";
-import { GeistUIThemes, Text } from "@geist-ui/react";
+import {
+  ChannelBox,
+  ChannelLogo,
+  Epg,
+  Layout,
+  ProgramBox,
+  ProgramContent,
+  ProgramFlex,
+  ProgramImage,
+  ProgramStack,
+  ProgramText,
+  ProgramTitle,
+  TimelineBox,
+  TimelineDivider,
+  TimelineDividers,
+  TimelineTime,
+  TimelineWrapper,
+  useEpg,
+  useProgram,
+  useTimeline,
+} from "planby";
+import {
+  endOfDay,
+  format,
+  getWeek,
+  getWeekOfMonth,
+  startOfDay,
+} from "date-fns";
 
-import { ContributionCalendar } from "./ContributionCalendar/ContributionCalendar";
-import ProjectCard from "./ProjectCard";
-import makeStyles from "../makeStyles";
-import useMedia from "use-media";
+const ChannelItem = ({ channel }) => {
+  console.log("channel: ", channel);
+  const { position, logo } = channel;
+  return (
+    <ChannelBox {...position}>
+      <ChannelLogo src={logo} alt="Logo" />
+    </ChannelBox>
+  );
+};
 
-export const useStylesContentStyles = makeStyles((ui: GeistUIThemes) => ({
-  root: {
-    position: "relative",
-    zIndex: 10,
-  },
-  content: {
-    width: "auto",
-    maxWidth: "100%",
-    height: `calc(100vh - 355px)`,
-    // boxSizing: "border-box",
-    overflow: "scroll",
-    margin: "0 auto",
-    padding: `0 ${ui.layout.pageMargin} 0`,
-    // transform: "translateY(-35px)",
-  },
-  titleSection: {
-    width: "100%",
-    padding: `0 240px`,
-    margin: "auto 0",
-    borderBottom: "solid 1px #333",
-  },
-  flex: {
-    width: "100%",
-    // maxWidth: "782pt",
-    margin: "auto!important",
-  },
-  row: {
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    minWidth: 1,
-    maxWidth: "100%",
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-  },
-  projects: {
-    width: "100%",
-  },
-  activity: {
-    flex: 1,
-    width: "100%",
-  },
-  [`@media screen and (min-width: ${ui.layout.pageWidthWithMargin})`]: {
-    content: {
-      width: ui.layout.pageWidthWithMargin,
-      maxWidth: "100%",
-      height: `calc(100vh - 355px)`,
-      // boxSizing: "border-box",
-      overflow: "scroll",
-      margin: "0 auto",
-      padding: `${ui.layout.pageMargin} ${ui.layout.pageMargin} 0`,
-      // transform: "translateY(-35px)",
-    },
-    row: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-    },
+const ProgramItem = ({ program, ...rest }) => {
+  console.log("rest: ", rest);
+  console.log("program: ", program);
+  const { styles, formatTime, set12HoursTimeFormat, isLive, isMinWidth } =
+    useProgram({
+      program,
+      ...rest,
+    });
 
-    activity: {
-      width: "70%",
-    },
-    projects: {
-      // width: 540,
-      width: "30%",
-      marginRight: 80,
-    },
-    activityTitle: {
-      marginTop: "0 !important",
-      marginBottom: 30,
-      fontSize: "14px !important",
-      textAlign: "start !important",
-    },
-    viewAll: {
-      marginBottom: "0 !important",
-      textAlign: "start !important",
-    },
-  },
-  viewAll: {
-    fontSize: 14,
-    fontWeight: 700,
-    marginBottom: ui.layout.gap,
-    textAlign: "center",
-  },
-  activityTitle: {
-    fontWeight: 700,
-    margin: 0,
-    fontSize: 24,
-    textAlign: "center",
-    width: "100%",
-    padding: `8pt`,
-  },
-}));
+  const { data } = program;
+  console.log("data: ", data);
+  const { image, title, since, till } = data;
+  console.log("title: ", title);
 
-const GithubStats = ({
-  contributionsCollection: {
-    contributionCalendar,
-    commitContributionsByRepository,
-  },
-  topRepositories,
-}) => {
-  const classes = useStylesContentStyles();
-  const isMobile = useMedia({ maxWidth: "768px" });
+  const sinceTime = formatTime(since, set12HoursTimeFormat()).toLowerCase();
+  const tillTime = formatTime(till, set12HoursTimeFormat()).toLowerCase();
 
   return (
-    <div className={classes.root}>
-      {!isMobile && (
-        <Box className={classes.titleSection}>
-          <Flex justifyContent="space-between" className={classes.flex}>
-            <Text h2 className={classes.activityTitle}>
-              Top Repositories
-            </Text>
-            <Text h2 className={classes.activityTitle}>
-              Contributions
-            </Text>
-          </Flex>
-        </Box>
-      )}
-      <div className={classes.content}>
-        <div className={classes.row}>
-          <div className={classes.projects}>
-            {isMobile && (
-              <Text h2 className={classes.activityTitle}>
-                Top Repositories
-              </Text>
+    <ProgramBox width={styles.width} style={styles.position}>
+      <ProgramContent width={styles.width} isLive={isLive}>
+        <ProgramFlex>
+          {isLive && isMinWidth && <ProgramImage src={image} alt="Preview" />}
+          <ProgramStack>
+            <ProgramTitle>{title}</ProgramTitle>
+            <ProgramText>
+              {sinceTime} - {tillTime}
+            </ProgramText>
+          </ProgramStack>
+        </ProgramFlex>
+      </ProgramContent>
+    </ProgramBox>
+  );
+};
+
+export function Timeline({
+  isBaseTimeFormat,
+  isSidebar,
+  dayWidth,
+  hourWidth,
+  numberOfHoursInDay,
+  offsetStartHoursRange,
+  sidebarWidth,
+}) {
+  const { time, dividers, formatTime } = useTimeline(
+    numberOfHoursInDay,
+    isBaseTimeFormat
+  );
+
+  const renderTime = (index) => (
+    <TimelineBox key={index} width={hourWidth}>
+      <TimelineTime>
+        {formatTime(index + offsetStartHoursRange).toLowerCase()}
+      </TimelineTime>
+      <TimelineDividers>{renderDividers()}</TimelineDividers>
+    </TimelineBox>
+  );
+
+  const renderDividers = () =>
+    dividers.map((_, index) => (
+      <TimelineDivider key={index} width={hourWidth} />
+    ));
+
+  return (
+    <TimelineWrapper
+      dayWidth={dayWidth}
+      sidebarWidth={sidebarWidth}
+      isSidebar={isSidebar}
+    >
+      {time.map((_, index) => renderTime(index))}
+    </TimelineWrapper>
+  );
+}
+
+const GithubStats = ({ contributionCalendar }) => {
+  const { weeks, months } = contributionCalendar;
+
+  const contributions = weeks.map((contribution) => ({
+    ...contribution,
+
+    week: getWeekOfMonth(new Date(contribution.date)),
+    id: `week-${getWeek(new Date(contribution.date))}_day-${
+      contribution.weekday
+    }`,
+    title: ` ${format(new Date(contribution.date), "MMMM dddd yyyy")}`,
+    since: startOfDay(new Date(contribution.date)),
+    till: endOfDay(new Date(contribution.date)),
+    image: "",
+  }));
+
+  const monthly = months.map((month) => {
+    return {
+      ...month,
+      uuid: `${month.name}-${month.year}`,
+      logo: "/calendar.svg",
+      // contributions: monthlyContributions,
+    };
+  });
+  const { getEpgProps, getLayoutProps } = useEpg({
+    channels: monthly,
+    epg: contributions,
+    dayWidth: 7200,
+    sidebarWidth: 100,
+    itemHeight: 80,
+    isSidebar: true,
+
+    isTimeline: true,
+    isLine: true,
+    startDate: "2022/01/01",
+    // endDate: "2022-05-25T24:00:00",
+    // startDate: new Date(months[0].firstDay),
+    // endDate: new Date(months[11].firstDay),
+    // isBaseTimeFormat: true,
+  });
+  return (
+    <div>
+      <div style={{ height: "80vh", width: "100%" }}>
+        <Epg isLoading={false} {...getEpgProps()}>
+          <Layout
+            {...getLayoutProps()}
+            renderTimeline={(props) => <Timeline {...props} />}
+            renderProgram={({ program, ...rest }) => {
+              console.log("program: ", program);
+              return (
+                <ProgramItem
+                  key={program.data.id}
+                  program={program}
+                  {...rest}
+                />
+              );
+            }}
+            renderChannel={({ channel }) => (
+              <ChannelItem key={channel.uuid} channel={channel} />
             )}
-            {topRepositories.edges?.map((edge, i) => (
-              <ProjectCard key={i} project={edge.node} />
-            ))}
-          </div>
-          <div className={classes.activity}>
-            {isMobile && (
-              <Text h2 className={classes.activityTitle}>
-                Contributions
-              </Text>
-            )}
-            <ContributionCalendar contributionCalendar={contributionCalendar} />
-          </div>
-        </div>
+          />
+        </Epg>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .container {
   /* background-color: rgb(13, 17, 23); */
-  height: calc(100vh - 110px);
+  height: 100vh;
   color: whitesmoke;
 }
 .two_col {

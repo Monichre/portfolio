@@ -1,33 +1,61 @@
+import { Box, Flex } from "rebass";
+
 import Link from "next/link";
+import { User } from "@geist-ui/core";
 import style from "../styles/Navbar.module.css";
+import styled from "styled-components";
 import { useRouter } from "next/router";
+
+const Liam = styled(User)`
+  .avatar {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .names {
+    .name {
+      line-height: 2em !important;
+      font-weight: 400 !important;
+    }
+    .social {
+      font-weight: 500 !important;
+    }
+  }
+`;
+
 const Navbar = () => {
   const router = useRouter();
   return (
-    <div className={style.navbar}>
-      <ul>
-        <Link href="/" passHref>
+    <Flex className={style.navbar} p={3}>
+      <Box>
+        <Liam src="/liam-1.jpeg" name="Liam Ellis">
+          Coding, Crypto, UFOs
+        </Liam>
+      </Box>
+      <Box ml="auto">
+        <ul>
           <li className={router.pathname == "/" ? `${style.active}` : ""}>
-            _home
+            <Link href="/" passHref>
+              home
+            </Link>
           </li>
-        </Link>
-        <Link href="/bio" passHref>
           <li className={router.pathname == "/bio" ? `${style.active}` : ""}>
-            _bio
+            <Link href="/bio" passHref>
+              bio
+            </Link>
           </li>
-        </Link>
-        <Link href="/work" passHref>
           <li className={router.pathname == "/work" ? `${style.active}` : ""}>
-            _work
+            <Link href="/work" passHref>
+              work
+            </Link>
           </li>
-        </Link>
-        <Link href="/blog" passHref>
           <li className={router.pathname == "/blog" ? `${style.active}` : ""}>
-            _blog
+            <Link href="/blog" passHref>
+              blog
+            </Link>
           </li>
-        </Link>
-      </ul>
-    </div>
+        </ul>
+      </Box>
+    </Flex>
   );
 };
 

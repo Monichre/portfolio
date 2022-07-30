@@ -1,10 +1,13 @@
 .navbar {
   color: lightgray;
-  display: flex;
-  align-items: center;
-  padding-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   /* box-shadow: 0px 2px 5px rgb(255, 255, 255); */
 }
+
 .navbar ul {
   /* background-color: rgb(1, 4, 9); */
   display: flex;
@@ -24,14 +27,21 @@
   margin: 0;
   cursor: pointer;
 }
-.navbar li:before {
-  content: unset !important;
+.navbar li a {
+  color: inherit;
+  width: max-content;
 }
-.active {
-  border-top: 1px solid rgb(121, 192, 255) !important;
-
-  /* //rgb(13, 17, 23); */
-  border-bottom: none;
+.navbar li:before {
+  content: "" !important;
+  border-bottom: 2px solid lightgray;
+  width: 10px;
+  position: relative;
+  left: -1px;
+  transition: all 0.5 ease;
+}
+.navbar li.active:before {
+  border-bottom: 2px solid rgb(121, 192, 255);
+  width: 12px;
 }
 
 @media screen and (max-width: 400px) {
