@@ -1,11 +1,5 @@
 export const GET_GITHUB_USER = `query{
   user(login: "monichre") {
-    login
-    status {
-      message
-    }
-    avatarUrl
-    bio
     topRepositories(orderBy: {field: CREATED_AT, direction: DESC}, first: 10) {
       edges {
         node {
@@ -49,14 +43,7 @@ export const GET_GITHUB_USER = `query{
         colors
       }
     }
-    organizations(first: 10) {
-      edges {
-        node {
-          avatarUrl
-          name
-        }
-      }
-    }
+
     pinnedItems(first: 5) {
       edges {
         node {

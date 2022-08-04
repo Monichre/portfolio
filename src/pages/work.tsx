@@ -99,6 +99,7 @@ export async function getStaticProps() {
   const {
     data: { user: data },
   } = await queryGitub(GET_GITHUB_USER);
+  console.log("data: ", data);
   const {
     topRepositories,
     pinnedItems,

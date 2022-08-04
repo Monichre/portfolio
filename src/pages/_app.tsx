@@ -5,7 +5,7 @@ import { CssBaseline, GeistProvider } from "@geist-ui/core";
 import Layout from "../components/Layout";
 import { Particles } from "../components/Particles/Particles";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps }) {
   return (
     <GeistProvider themeType={"dark"}>
       <CssBaseline />
