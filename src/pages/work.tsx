@@ -41,7 +41,7 @@ const Work = ({ github, apps, posts }) => {
   const tags = []
     .concat(
       [],
-      [...apps, ...posts].map(({ tags }) => [...tags])
+      [...apps].map(({ tags }) => [...tags])
     )
     .flat();
 

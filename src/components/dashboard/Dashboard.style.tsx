@@ -121,6 +121,10 @@ export const MainListItem = styled.li`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const MainList = styled.ul`
@@ -203,6 +207,9 @@ export const AppRow = styled.div`
     list-style: none;
     padding: 2.6rem 0 2rem;
     display: flex;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   .main__card {
@@ -309,6 +316,9 @@ export const DashboardWrap: any = styled.div`
   display: -webkit-flex;
   justify-content: center;
   border-bottom-right-radius: 8px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
   /* rgb(121, 192, 255) */
 
   .main {
@@ -450,6 +460,9 @@ export const DashboardWrap: any = styled.div`
     list-style: none;
     display: flex;
     align-items: center;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   .main__footer {
