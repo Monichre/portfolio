@@ -95,7 +95,7 @@ const Work = ({ github, apps, posts }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const {
     data: { user: data },
   } = await queryGitub(GET_GITHUB_USER);
@@ -138,7 +138,6 @@ export async function getServerSideProps(context) {
       });
 
       const description = possibleDescription || "";
-      const { images } = preview;
 
       return {
         ...repo,
