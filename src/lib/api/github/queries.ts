@@ -1,4 +1,4 @@
-export const GET_GITHUB = `query{
+export const GET_GITHUB_USER = `query{
   user(login: "monichre") {
     login
     status {
@@ -14,28 +14,15 @@ export const GET_GITHUB = `query{
             avatarUrl
             login
           }
+          url
+          homepageUrl
           pushedAt
           updatedAt
         }
       }
     }
     contributionsCollection {
-      commitContributionsByRepository {
-        contributions(first: 10) {
-          edges {
-            node {
-              commitCount
-              occurredAt
-              repository {
-                name
-                owner {
-                  avatarUrl
-                }
-              }
-            }
-          }
-        }
-      }
+    
       totalCommitContributions
       totalPullRequestContributions
       totalPullRequestReviewContributions
@@ -76,6 +63,9 @@ export const GET_GITHUB = `query{
           ... on Repository {
             name
             url
+            name
+            homepageUrl
+            description
             owner {
               login
               avatarUrl

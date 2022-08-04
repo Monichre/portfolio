@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 
-import { Box, Flex } from "rebass";
+import { GET_BLOG_POSTS, GET_WEB_APPS, queryContentful } from "../lib/api";
 
 import Color from "color";
-import { GET_GITHUB } from "../lib/queries";
-import { Grid } from "@geist-ui/react";
-import ProjectCard from "../components/GithubStats/ProjectCard";
+import Dashboard from "../components/dashboard/Dashboard";
+import { GET_GITHUB_USER } from "../lib/api/github/queries";
 import { ResponsiveCalendar } from "@nivo/calendar";
-import { getQuery } from "../lib/api";
-import style from "../styles/Project.module.css";
+import { getLinkPreview } from "link-preview-js";
+import { queryGitub } from "../lib/api/github";
 
 const Activity = ({ data, from, to, colors /* see data tab */ }) => (
   <ResponsiveCalendar
@@ -36,11 +35,15 @@ const Activity = ({ data, from, to, colors /* see data tab */ }) => (
     ]}
   />
 );
-const Work = ({ data }) => {
-  const {
-    contributionsCollection: { contributionCalendar },
-    topRepositories,
-  } = data;
+
+const Work = ({ github, apps, posts }) => {
+  const { contributionCalendar, repos } = github;
+  const tags = []
+    .concat(
+      [],
+      [...apps, ...posts].map(({ tags }) => [...tags])
+    )
+    .flat();
 
   const { weeks } = contributionCalendar;
 
@@ -75,43 +78,125 @@ const Work = ({ data }) => {
   const from = contributions[0].day;
   const to = contributions[contributions.length - 1].day;
 
-  return (
-    <div className={style.project}>
-      <Flex
-        mt={5}
-        justifyContent={"center"}
-        alignItems="center"
-        alignContent="center"
-        style={{ height: "inherit" }}
-      >
-        <Grid.Container
-          gap={2}
-          justifyContent="space-evenly"
-          style={{ width: "30vw" }}
-        >
-          {topRepositories.edges?.map((edge, i) => (
-            <Grid xs={6}>
-              <ProjectCard key={i} project={edge.node} />
-            </Grid>
-          ))}
-        </Grid.Container>
+  const contributionData = {
+    colors,
+    contributions,
+    from,
+    to,
+  };
 
-        <Box p={1} style={{ width: "60vw", height: "inherit" }}>
-          <Activity data={contributions} from={from} to={to} colors={colors} />
-        </Box>
-      </Flex>
-    </div>
+  return (
+    <Dashboard
+      tags={tags}
+      apps={apps}
+      posts={posts}
+      github={{ repos, contributionData }}
+    />
   );
 };
 
 export async function getStaticProps() {
   const {
     data: { user: data },
-  } = await getQuery(GET_GITHUB);
+  } = await queryGitub(GET_GITHUB_USER);
+  const {
+    topRepositories,
+    pinnedItems,
+    contributionsCollection: { contributionCalendar },
+  } = data;
+
+  const nodes = [...topRepositories.edges, ...pinnedItems.edges].map(
+    ({ node }) => node
+  );
+
+  const repos = await Promise.all(
+    nodes.map(async (repo) => {
+      const url = repo?.homepageUrl
+        ? `https://${repo?.homepageUrl}`
+        : repo?.url;
+
+      const {
+        description: possibleDescription,
+        siteName,
+        ...preview
+      } = await getLinkPreview(url, {
+        followRedirects: `manual`,
+        handleRedirects: (baseURL: string, forwardedURL: string) => {
+          const urlObj = new URL(baseURL);
+          const forwardedURLObj = new URL(forwardedURL);
+          if (
+            forwardedURLObj.hostname === urlObj.hostname ||
+            forwardedURLObj.hostname === "www." + urlObj.hostname ||
+            "www." + forwardedURLObj.hostname === urlObj.hostname
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+      });
+
+      const description = possibleDescription || "";
+      const { images } = preview;
+
+      return {
+        ...repo,
+        description,
+        preview,
+      };
+    })
+  );
+
+  const github = { contributionCalendar, repos };
+  const {
+    data: {
+      postCollection: { items: posts },
+    },
+  } = await queryContentful(GET_BLOG_POSTS);
+
+  const apps = await queryContentful(GET_WEB_APPS).then(
+    async ({
+      data: {
+        appCollection: { items },
+      },
+    }) => {
+      const appsWithPreview = await Promise.all(
+        items.map(async (item: any) => {
+          const { siteName, ...rest } = await getLinkPreview(item.url, {
+            followRedirects: `manual`,
+            handleRedirects: (baseURL: string, forwardedURL: string) => {
+              const urlObj = new URL(baseURL);
+              const forwardedURLObj = new URL(forwardedURL);
+              if (
+                forwardedURLObj.hostname === urlObj.hostname ||
+                forwardedURLObj.hostname === "www." + urlObj.hostname ||
+                "www." + forwardedURLObj.hostname === urlObj.hostname
+              ) {
+                return true;
+              } else {
+                return false;
+              }
+            },
+          });
+          const { description, ...preview } = rest;
+
+          return {
+            ...item,
+            preview,
+            description,
+          };
+        })
+      );
+
+      return appsWithPreview;
+    }
+  );
 
   return {
     props: {
-      data,
+      github,
+      apps,
+      posts,
     },
   };
 }

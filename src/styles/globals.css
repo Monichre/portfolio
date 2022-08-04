@@ -9,7 +9,7 @@ body {
   font-family: "Fira Code", monospace !important;
 
   /* background-color: rgb(13, 17, 23); */
-  overflow: hidden;
+  overflow: scroll;
 }
 p {
   font-family: "Fira Code", monospace !important;

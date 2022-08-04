@@ -1,4 +1,4 @@
-async function fetchGraphQL(query) {
+async function fetchGraphql(query) {
   return fetch(`https://api.github.com/graphql`, {
     method: "POST",
     headers: {
@@ -11,8 +11,8 @@ async function fetchGraphQL(query) {
     .catch((err) => {});
 }
 
-export async function getQuery(query) {
-  const entries = await fetchGraphQL(query);
+export async function queryGitub(query) {
+  const entries = await fetchGraphql(query);
 
   return entries;
 }

@@ -28,10 +28,11 @@ const Selfie: any = styled.div`
 
     opacity: 0.5;
     mix-blend-mode: hard-light;
-  }
-  &:hover:before {
     animation: animate 0.3s linear infinite;
   }
+  /* &:hover:before {
+    
+  } */
   @keyframes animate {
     0% {
       background-position: 0 0;
