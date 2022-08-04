@@ -95,11 +95,11 @@ const Work = ({ github, apps, posts }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
   const {
     data: { user: data },
   } = await queryGitub(GET_GITHUB_USER);
-  console.log("data: ", data);
+
   const {
     topRepositories,
     pinnedItems,
