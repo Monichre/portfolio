@@ -119,7 +119,7 @@ export async function getStaticProps() {
         description: possibleDescription,
         siteName,
         ...preview
-      } = await getLinkPreview(url, {
+      }: any = await getLinkPreview(url, {
         followRedirects: `manual`,
         handleRedirects: (baseURL: string, forwardedURL: string) => {
           const urlObj = new URL(baseURL);
@@ -162,7 +162,7 @@ export async function getStaticProps() {
     }) => {
       const appsWithPreview = await Promise.all(
         items.map(async (item: any) => {
-          const { siteName, ...rest } = await getLinkPreview(item.url, {
+          const { siteName, ...rest }: any = await getLinkPreview(item.url, {
             followRedirects: `manual`,
             handleRedirects: (baseURL: string, forwardedURL: string) => {
               const urlObj = new URL(baseURL);
