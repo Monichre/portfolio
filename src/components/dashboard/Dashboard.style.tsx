@@ -23,11 +23,11 @@ export const MainListItemImage = styled.div`
 
 export const AppItem = styled.div`
   flex-shrink: 0;
-  margin-right: 1.4rem;
+  /* margin-right: 1.4rem; */
   /* background: hsl(270, 50%, 15%); */
-  transform: translateX(-8rem);
+  /* transform: translateX(-8rem); */
   padding: 1.6rem;
-  width: 24%;
+  /* width: 24%; */
   border-radius: 8px;
   box-shadow: 0 4px 10px 0 hsla(270, 30%, 7%, 0.3);
   filter: contrast(1);
@@ -265,27 +265,6 @@ export const AppRow = styled.div`
   .main__card-heading-type {
     margin-top: 2.8rem;
   }
-
-  .main__cards-pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .main__cards-buttons > button {
-    color: inherit;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-  }
-
-  .main__cards-buttons > button:hover {
-    opacity: 1 !important;
-  }
-
-  .main__cards-buttons svg {
-    height: 1.6rem;
-  }
 `;
 
 export const DashboardWrap: any = styled.div`
@@ -516,6 +495,31 @@ export const DashboardWrap: any = styled.div`
 
   .main__cr:hover {
     opacity: 0.7;
+  }
+
+  .main__cards-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main__cards-buttons {
+    position: relative;
+    z-index: 20;
+  }
+  .main__cards-buttons button {
+    color: #fff;
+
+    border: 0;
+    cursor: pointer;
+  }
+
+  .main__cards-buttons button {
+    opacity: 1 !important;
+  }
+
+  .main__cards-buttons svg {
+    height: 1.6rem;
+    stroke: #fff;
   }
 `;
 
