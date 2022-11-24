@@ -1,10 +1,11 @@
-import { Flex } from "rebass";
-/* eslint-disable react/jsx-no-comment-textnodes */
-import { motion } from "framer-motion";
-import style from "../styles/About.module.css";
-import styled from "styled-components";
-import { useState } from "react";
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Flex } from 'rebass';
+import styled from 'styled-components';
 
+import style from '../styles/About.module.css';
+
+/* eslint-disable react/jsx-no-comment-textnodes */
 const Selfie: any = styled.div`
   position: relative;
   z-index: 1;
@@ -156,31 +157,22 @@ const About = () => {
             },
           }}
         >
-          <p style={{ maxWidth: "80%" }}>
-            <span className={style.ml_2} style={{ fontWeight: "bold" }}>
-              /*
-            </span>
-
+          <p style={{ maxWidth: "80%", fontSize: "16px!important" }}>
             <br />
             <span style={{ lineHeight: "30px" }}>
-              Ello, I'm Liam. I'm a senior software engineer specializing in
-              web, cloud and serverless technologies on the AWS platform. At
-              heart, UFO geek, JAMstack fanboy, dApp, Defi and MEV strat
-              enthusiast and aspiring Solidity developer. At hand, I've spent
-              the last several years building enterprise CMS architecture for a
-              myriad of end use cases across industries ranging from real estate
-              to events management with products including web applications for
-              listing and managing real estate properties and custom
-              data-federated platform APIs unifying disparate data sources for
-              single point consumption in addition to automated systems for the
-              generation, configuration and deployment of AWS Lex and Alexa
-              bots.
+              I'm Liam. I'm a senior software engineer specializing in web,
+              cloud and serverless technologies on the AWS platform. At heart,
+              UFO geek, JAMstack fanboy, dApp, Defi and MEV strat enthusiast and
+              aspiring Solidity developer. At hand, I've spent the last several
+              years building enterprise CMS architecture for a myriad of end use
+              cases across industries ranging from real estate to events
+              management with products including web applications for listing
+              and managing real estate properties and custom data-federated
+              platform APIs unifying disparate data sources for single point
+              consumption in addition to automated systems for the generation,
+              configuration and deployment of AWS Lex and Alexa bots.
             </span>
             <br />
-
-            <span className={style.ml_2} style={{ fontWeight: "bold" }}>
-              */
-            </span>
           </p>
         </motion.div>
       </div>
@@ -193,7 +185,7 @@ const About = () => {
         // p={5}
         mr={"10%"}
       >
-        <Selfie url="/liam-3.jpeg" />
+        <Selfie url="/profile-pic.png" />
       </Flex>
     </div>
   );

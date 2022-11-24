@@ -1,13 +1,13 @@
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from './Footer';
+import Navbar, { SideBarMenu } from './Navbar';
 
 const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
 
+      <SideBarMenu />
       {children}
-
       <Footer />
     </>
   );

@@ -7,37 +7,44 @@
   position: fixed;
   bottom: 0;
   z-index: 10;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: auto;
   height: 50px;
 }
+
 .footer div {
   display: flex;
   font-size: 1.2rem;
   align-items: center;
   padding: 0 1rem !important;
 }
+
 .footer p {
   border-right: 1px solid rgba(139, 148, 158, 0.2);
   font-size: 1.2rem;
   padding: 10px;
 }
+
 .footer a {
   margin: 0 5px;
 }
+
 .footer span {
   padding: 5px 10px;
   display: flex;
   align-items: center;
 }
+
 .footer span svg {
   height: 22px;
   stroke: lightgray;
 }
+
 @media screen and (max-width: 425px) {
   .footer div {
     font-size: 1.2rem;
   }
+
   .find {
     display: none;
   }

@@ -1,19 +1,24 @@
-import "../styles/globals.css";
+import { CssBaseline, GeistProvider } from '@geist-ui/core';
+import { ThemeProvider } from 'styled-components';
 
-import { CssBaseline, GeistProvider } from "@geist-ui/core";
+import Layout from '../components/Layout';
+import { Particles } from '../components/Particles/Particles';
+import { GlobalStyles } from '../styles/GlobalStyles';
 
-import Layout from "../components/Layout";
-import { Particles } from "../components/Particles/Particles";
+// import '../styles/Navbar.module.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <GeistProvider themeType={"dark"}>
-      <CssBaseline />
-      <Particles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </GeistProvider>
+    <ThemeProvider theme={{}}>
+      <GlobalStyles />
+      <GeistProvider themeType={"dark"}>
+        <CssBaseline />
+        <Particles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GeistProvider>
+    </ThemeProvider>
   );
 }
 

@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300;400&display=swap");
 
 html,
@@ -213,10 +216,6 @@ button {
   }
 }
 
-a {
-  color: inherit !important;
-}
-
 #logo,
 a:hover {
   color: #64ffda;
@@ -404,8 +403,8 @@ a:hover {
   user-select: none;
 }
 
-.dKogfI ol a:focus {
-  color: #64ffda;
+.dKogfI ol li a {
+  color: #64ffda!important;
   outline: 0;
 }
 
@@ -472,3 +471,6 @@ a:hover {
   outline: 0 !important;
   outline-offset: 0 !important;
 } */
+
+
+`;
