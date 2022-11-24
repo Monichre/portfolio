@@ -1,6 +1,5 @@
-import styled, { css } from "styled-components";
-
-import { Tag } from "@geist-ui/react";
+import { Tag } from '@geist-ui/react';
+import styled, { css } from 'styled-components';
 
 export const CardCss = css`
   height: 300px !important;
@@ -298,7 +297,7 @@ export const DashboardWrap: any = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
-  /* rgb(121, 192, 255) */
+  /* #64ffda */
 
   .main {
   }

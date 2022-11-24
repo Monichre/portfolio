@@ -40,7 +40,7 @@
   transition: all 0.5 ease;
 }
 .navbar li.active:before {
-  border-bottom: 2px solid rgb(121, 192, 255);
+  border-bottom: 2px solid #64ffda;
   width: 12px;
 }
 
