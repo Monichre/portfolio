@@ -149,7 +149,7 @@ const Navbar = () => {
     //   </Box>
     // </Flex>
     <nav className="css_pro-edited-element-0 inherited-styles-for-exported-element">
-      <div className="logo fade-enter-done" tabindex="-1">
+      <div className="logo fade-enter-done">
         <a href="" aria-label="home">
           <img src={"/profile-pic.png"} />
         </a>
